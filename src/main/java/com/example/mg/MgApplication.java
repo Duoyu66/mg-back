@@ -10,7 +10,7 @@ public class MgApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MgApplication.class, args);
-        System.out.println("项目启动了~");
+        System.out.println("木瓜编程项目启动了~");
     }
 
 }
