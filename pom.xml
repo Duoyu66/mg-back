@@ -22,11 +22,26 @@
         <mybatis-plus.version>3.5.5</mybatis-plus.version>
     </properties>
 
+    <repositories>
+        <!-- Maven Central -->
+        <repository>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!-- Spring Boot Starters -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        <!-- JDBC支持（包含数据源自动配置） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
         <!-- MyBatis-Plus for Spring Boot 3.2 -->
@@ -48,7 +63,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-
+        
         <!-- 暂时移除有问题的依赖 -->
         <!--
         <dependency>
@@ -105,4 +120,5 @@
             </plugin>
         </plugins>
     </build>
+</project>
 </project>
