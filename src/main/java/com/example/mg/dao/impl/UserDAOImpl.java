@@ -1,5 +1,6 @@
 package com.example.mg.dao.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mg.common.PageData;
 import com.example.mg.common.R;
@@ -72,6 +73,37 @@ public class UserDAOImpl implements UserDAO {
 
         // 使用转换后的DTO列表创建分页数据
         return R.page(userDTOs, entityPage.getTotal(), page, pageSize);
+    }
+
+    @Override
+    public UserDTO findByUsername(String username) {
+        QueryWrapper<UserEntity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        UserEntity entity = userMapper.selectOne(queryWrapper);
+        
+        if (entity == null) {
+            return null;
+        }
+        
+        return UserDTO.builder()
+                .id(entity.getId())
+                .username(entity.getUsername())
+                .email(entity.getEmail())
+                .build();
+    }
+
+    @Override
+    public void save(UserEntity user) {
+        if (user.getId() == null) {
+            userMapper.insert(user);
+        } else {
+            userMapper.updateById(user);
+        }
+    }
+
+    @Override
+    public UserEntity getUserEntityById(String id) {
+        return userMapper.selectById(id);
     }
 }
 
