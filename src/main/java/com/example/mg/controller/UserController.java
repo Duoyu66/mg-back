@@ -14,7 +14,7 @@ import java.util.List;
 
 @Tag(name = "用户管理", description = "用户相关接口")
 @RestController
-@RequestMapping("/api/test")
+@RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
 
