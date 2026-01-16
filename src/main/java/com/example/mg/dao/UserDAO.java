@@ -3,6 +3,7 @@ package com.example.mg.dao;
 import com.example.mg.common.PageData;
 import com.example.mg.common.R;
 import com.example.mg.dto.UserDTO;
+import com.example.mg.entity.UserEntity;
 
 import java.util.List;
 
@@ -23,5 +24,20 @@ public interface UserDAO {
      * 通过分页获取用户列表
      **/
     R<PageData<UserDTO>> getUserByPage(int page, int pageSize);
+
+    /**
+     * 根据用户名查找用户
+     */
+    UserDTO findByUsername(String username);
+
+    /**
+     * 保存用户
+     */
+    void save(UserEntity user);
+
+    /**
+     * 根据ID获取用户实体
+     */
+    UserEntity getUserEntityById(String id);
 }
 
