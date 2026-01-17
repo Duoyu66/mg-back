@@ -11,4 +11,5 @@ public class TokenResponse {
     private String refreshTokenId;
     private String refreshToken;
     private Long refreshTokenExpiresInSeconds;
+    private UserDTO user;
 }

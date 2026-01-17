@@ -16,6 +16,7 @@ public class PostEntity {
     private String userId;
     private String ipAddress;
     private int view;
+    private String title;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;

@@ -85,7 +85,7 @@ public class AuthServiceImpl implements AuthService {
         user.setGender(0);
         user.setMobile(null);
         user.setStatus(1);
-        user.setVipType(0);
+        user.setVipType("free");
         user.setVipStartTime(null);
         user.setVipEndTime(null);
         user.setExp(0);
@@ -119,12 +119,20 @@ public class AuthServiceImpl implements AuthService {
         expireVal(ipKey, Duration.ofHours(1));
         delVal("email:code:register:" + email);
         audit("REGISTER", id, 1, "ok", ip, ua);
+        
+        UserDTO userDTO = UserDTO.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .build();
+
         TokenResponse tr = TokenResponse.builder()
                 .accessToken(access)
                 .accessTokenExpiresInSeconds(accessSeconds)
                 .refreshTokenId(rtId)
                 .refreshToken(rt)
                 .refreshTokenExpiresInSeconds(rs)
+                .user(userDTO)
                 .build();
         return R.success(tr);
     }
@@ -164,12 +172,22 @@ public class AuthServiceImpl implements AuthService {
         rte.setRevoked(0);
         refreshTokenMapper.insert(rte);
         audit("LOGIN", user.getId(), 1, "ok", ip, ua);
+        
+        UserDTO userDTO = UserDTO.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .avatar(user.getAvatar())
+                .vipType(user.getVipType())
+                .build();
+
         TokenResponse tr = TokenResponse.builder()
                 .accessToken(access)
                 .accessTokenExpiresInSeconds(accessSeconds)
                 .refreshTokenId(rtId)
                 .refreshToken(rt)
                 .refreshTokenExpiresInSeconds(rs)
+                .user(userDTO)
                 .build();
         return R.success(tr);
     }

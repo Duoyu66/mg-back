@@ -27,7 +27,7 @@ public class UserEntity {
     private Integer gender;
     private String mobile;
     private Integer status;
-    private Integer vipType;
+    private String vipType;
     private String signature;
     private LocalDateTime vipStartTime;
     private LocalDateTime vipEndTime;

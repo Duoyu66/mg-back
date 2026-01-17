@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Data
 public class PostVO {
     private String id;
+    private String title;
     private String content;
     private String userId;
     private String ipAddress;
@@ -19,4 +20,5 @@ public class PostVO {
     private String school;
     private String signature;
     private String nickname;
+    private  String vipType;
 }

@@ -1,7 +1,8 @@
     package com.example.mg.controller;
 
     import cn.hutool.core.util.IdUtil;
-    import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+    import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
     import com.example.mg.common.PageData;
     import com.example.mg.common.R;
     import com.example.mg.dto.PostVO;
@@ -36,7 +37,9 @@ public class PostController {
         public R<PageData<PostVO>> getAll(@RequestParam(defaultValue = "1") int page,
                                           @RequestParam(defaultValue = "10") int pageSize) {
             Page<PostEntity> p = Page.of(page, pageSize);
-            Page<PostEntity> result = postMapper.selectPage(p, null);
+            LambdaQueryWrapper<PostEntity> wrapper = new LambdaQueryWrapper<>();
+            wrapper.orderByDesc(PostEntity::getCreateTime);
+            Page<PostEntity> result = postMapper.selectPage(p, wrapper);
             java.util.List<PostEntity> records = result.getRecords();
             java.util.List<String> ids = new java.util.ArrayList<>();
             for (PostEntity e : records) ids.add(e.getId());
@@ -59,6 +62,7 @@ public class PostController {
             for (PostEntity e : records) {
                 PostVO vo = new PostVO();
                 vo.setId(e.getId());
+                vo.setTitle(e.getTitle());
                 vo.setContent(e.getContent());
                 vo.setUserId(e.getUserId());
                 vo.setIpAddress(e.getIpAddress());
@@ -73,12 +77,14 @@ public class PostController {
                     vo.setSchool(u.getSchool());
                     vo.setSignature(u.getSignature());
                     vo.setNickname(u.getNickName());
+                    vo.setVipType(u.getVipType());
                 }
                 vos.add(vo);
             }
             return R.page(vos, result.getTotal());
         }
         //发布帖子
+        @Operation(summary = "发布帖子")
     @PostMapping("/sendPost")
     public R<Boolean> sendPost(@RequestBody PostVO vo, HttpServletRequest request) {
         String token = request.getHeader("Authorization");
