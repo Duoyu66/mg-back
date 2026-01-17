@@ -8,5 +8,6 @@ public class RegisterRequest {
     private String password;
     private String nickName;
     private String code;
+    private String username;
     private Boolean rememberMe;
 }
