@@ -14,7 +14,9 @@ public record UserDTO(
         @Schema(description = "用户名")
         String username,
         @Schema(description = "邮箱")
-        String email
+        String email,
+        @Schema(description = "头像URL")
+        String avatar
 ) {
 }
 
