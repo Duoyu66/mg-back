@@ -18,7 +18,9 @@ public record UserDTO(
         @Schema(description = "头像URL")
         String avatar,
         @Schema(description="vip类型")
-        String vipType
+        String vipType,
+        @Schema(description="昵称")
+        String nickName
 ) {
 }
 

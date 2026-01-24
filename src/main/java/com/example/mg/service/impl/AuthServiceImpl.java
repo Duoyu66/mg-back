@@ -179,6 +179,7 @@ public class AuthServiceImpl implements AuthService {
                 .email(user.getEmail())
                 .avatar(user.getAvatar())
                 .vipType(user.getVipType())
+                .nickName(user.getNickName())
                 .build();
 
         TokenResponse tr = TokenResponse.builder()
