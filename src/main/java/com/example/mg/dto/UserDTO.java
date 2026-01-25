@@ -11,6 +11,8 @@ import lombok.Builder;
 public record UserDTO(
         @Schema(description = "用户ID")
         String id,
+        @Schema(description = "用户签名")
+        String signature,
         @Schema(description = "用户名")
         String username,
         @Schema(description = "邮箱")

@@ -98,6 +98,7 @@ public class PostController {
         
         PostEntity entity = new PostEntity();
         entity.setId(id);
+        entity.setTitle(vo.getTitle());
         entity.setContent(vo.getContent());
         entity.setUserId(userId);
         

@@ -9,16 +9,18 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-@TableName("company")
-public class CompanyEntity {
+@TableName("interview_experience")
+public class InterviewExperienceEntity {
     @TableId
     private String id;
     private String title;
-    private String scale;
-    private String logo;
-    private String recruitmentUrl;
-    private int level;
-    private String type;
+    private String companyId;
+    private String content;
+    private String job;
+    private String exp_time;
+    private String userId;
+    private String vip;
+
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
     @TableField(fill = FieldFill.INSERT_UPDATE)
